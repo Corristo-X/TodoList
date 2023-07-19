@@ -28,7 +28,7 @@ class Todo
  
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'todos')]
     #[ORM\JoinColumn(nullable: false)]
-    private ?string $userAccount = null;
+    private ?User $userAccount = null;
 
     
 
@@ -96,4 +96,5 @@ class Todo
 
         return $this;
     }
+    
 }

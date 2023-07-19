@@ -1,0 +1,4 @@
+{{ form_start(form, { 'method': 'POST' }) }}
+    <input type="hidden" name="_token" value="{{ csrf_token('delete' ~ todo.id) }}">
+    <button class="btn">{{ button_label|default('Delete') }}</button>
+{{ form_end(form) }}
