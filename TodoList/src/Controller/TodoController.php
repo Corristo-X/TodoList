@@ -23,11 +23,14 @@ class TodoController extends AbstractController
     }
 
     #[Route('/', name: 'todo_index', methods: ['GET'])]
-    public function index(): Response
+    public function index(TodoRepository $todoRepository): Response
     {
-        $todos = $this->todoRepository->findAll();
+        $user = $this->getUser();
+        $todos = $todoRepository->findBy(['userAccount' => $user]);
+    
         return $this->render('todo/index.html.twig', ['todos' => $todos]);
     }
+    
 
     #[Route('/new', name: 'todo_new', methods: ['GET', 'POST'])]
     public function new(Request $request): Response
@@ -59,6 +62,7 @@ class TodoController extends AbstractController
     #[Route('/{id}', name: 'todo_show', methods: ['GET'])]
     public function show(Todo $todo): Response
     {
+        
         $deleteForm = $this->createFormBuilder()->getForm();
 
     
