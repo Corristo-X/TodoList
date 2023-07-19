@@ -3,9 +3,6 @@ controllers:
         path: ../src/Controller/
         namespace: App\Controller
     type: attribute
-home:
-    path: /
-    controller: App\Controller\HomeController::index
 register:
     path: /register
     controller: App\Controller\RegistrationController::register
@@ -16,3 +13,28 @@ app_login:
 
 app_logout:
     path: /logout
+
+todo_index:
+    path: /
+    controller: App\Controller\TodoController::index
+    methods: [GET]
+
+todo_new:
+    path: /new
+    controller: App\Controller\TodoController::new
+    methods: [GET, POST]
+
+todo_show:
+    path: /{id}
+    controller: App\Controller\TodoController::show
+    methods: [GET]
+
+todo_edit:
+    path: /{id}/edit
+    controller: App\Controller\TodoController::edit
+    methods: [GET, POST]
+
+todo_delete:
+    path: /{id}
+    controller: App\Controller\TodoController::delete
+    methods: [POST]
