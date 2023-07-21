@@ -2,8 +2,11 @@
 
 namespace App\Entity;
 
+use ApiPlatform\Metadata\ApiResource;
 use App\Repository\TodoRepository;
 use Doctrine\ORM\Mapping as ORM;
+
+#[ApiResource()]
 
 #[ORM\Entity(repositoryClass: TodoRepository::class)]
 class Todo
@@ -25,12 +28,12 @@ class Todo
     #[ORM\Column]
     private ?\DateTimeImmutable $updated_at = null;
 
- 
+
     #[ORM\ManyToOne(targetEntity: User::class, inversedBy: 'todos')]
     #[ORM\JoinColumn(nullable: false)]
     private ?User $userAccount = null;
 
-    
+
 
     public function getId(): ?int
     {
@@ -96,5 +99,4 @@ class Todo
 
         return $this;
     }
-    
 }
